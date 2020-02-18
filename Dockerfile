@@ -35,7 +35,7 @@ RUN echo "nameserver 1.1.1.1" | tee /etc/resolv.conf > /dev/null
 
 # Install packages
 RUN DEBIAN_FRONTEND=noninteractive apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y apt-transport-https lsb-release ca-certificates
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y apt-transport-https lsb-release ca-certificates wget
 RUN wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
 RUN echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list
 RUN DEBIAN_FRONTEND=noninteractive apt-get update
@@ -47,7 +47,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     git \
     unzip \
     mcrypt \
-    wget \
     curl \
     openssl \
     ssh \
