@@ -6,7 +6,7 @@
 - `wget`, `curl`, `unzip`
 - `composer`
 - Apache 2.4
-- MySQL 5.7
+- MariaDB 10.3
 - NPM
 - Lighthouse
 
