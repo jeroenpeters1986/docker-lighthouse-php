@@ -34,10 +34,11 @@ ARG MYSQL_ROOT_PASS=root
 RUN echo "nameserver 1.1.1.1" | tee /etc/resolv.conf > /dev/null
 
 # Install packages
+RUN DEBIAN_FRONTEND=noninteractive apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y apt-transport-https lsb-release ca-certificates
 RUN wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
 RUN echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list
-RUN EBIAN_FRONTEND=noninteractive apt-get update
+RUN DEBIAN_FRONTEND=noninteractive apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
     php-pear php7.2-mysql php7.2-zip php7.2-xml php7.2-curl php7.2-mbstring php7.2-curl php7.2-json \
