@@ -47,7 +47,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     less \
     composer \
     sudo \
-    mysql-server \
+    mariadb-server \
     npm
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
