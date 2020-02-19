@@ -24,7 +24,7 @@
 FROM debian:buster-slim
 LABEL name="lighthouse-php" \
   maintainer="Jeroen Peters <jeroenpeters1986@gmail.com>" \
-  version="0.3" \
+  version="0.5" \
   description="Lighthouse analyzes web apps and web pages, collecting modern performance metrics and insights on developer best practices."
 
 # MySQL root password
@@ -85,9 +85,6 @@ RUN apt-get update && apt-get install -y gnupg --no-install-recommends \
 ARG CACHEBUST=1
 RUN npm install -g lighthouse
 
-RUN composer global require mpyw/php-hyper-builtin-server:^2.0
-RUN export PATH="$HOME/.composer/vendor/bin:$PATH"
-
 # Ensure UTF-8
 ENV LANG       en_US.UTF-8
 ENV LC_ALL     en_US.UTF-8
@@ -106,6 +103,9 @@ WORKDIR /home/chrome/reports
 
 # Run Chrome non-privileged
 USER chrome
+
+# Install hyper-run server (PHP runserver with SSL)
+RUN composer require mpyw/php-hyper-builtin-server:^2.0
 
 # Drop to cli
 CMD ["/bin/bash"]
