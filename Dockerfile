@@ -24,7 +24,7 @@
 FROM debian:buster-slim
 LABEL name="lighthouse-php" \
   maintainer="Jeroen Peters <jeroenpeters1986@gmail.com>" \
-  version="0.5" \
+  version="0.6" \
   description="Lighthouse analyzes web apps and web pages, collecting modern performance metrics and insights on developer best practices."
 
 # MySQL root password
@@ -105,7 +105,9 @@ WORKDIR /home/chrome/reports
 USER chrome
 
 # Install hyper-run server (PHP runserver with SSL)
+WORKDIR /home/chrome/
 RUN composer require mpyw/php-hyper-builtin-server:^2.0
 
 # Drop to cli
+WORKDIR /home/chrome/reports
 CMD ["/bin/bash"]
